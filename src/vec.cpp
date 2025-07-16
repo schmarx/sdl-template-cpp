@@ -30,7 +30,7 @@ vec2 vec2::operator-(vec2 v) {
 	return vec2(x - v.x, y - v.y);
 }
 
-float vec2::mag() {
+float vec2::mag_sqr() {
 	vec2 v = *this;
 	return v * v;
 }
@@ -47,39 +47,47 @@ void vec2::print() {
 // ----- 3-dimensional vector operations -----
 // -------------------------------------------
 
-float vec3_dot(vec3 v1, vec3 v2) {
-	return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+vec3::vec3(float x, float y, float z) {
+	this->x = x;
+	this->y = y;
+	this->z = z;
 }
 
-float vec3_mag(vec3 v) {
-	return vec3_dot(v, v);
+vec3::~vec3() {
+	// nothing to do
 }
 
-vec3 vec3_mul(vec3 v, float c) {
-	vec3 result = {c * v.x, c * v.y, c * v.z};
-	return result;
+float vec3::operator*(vec3 v) {
+	return x * v.x + y * v.y + z * v.z;
 }
 
-vec3 vec3_add(vec3 v1, vec3 v2) {
-	vec3 result = {v1.x + v2.x, v1.y + v2.y, v1.z + v2.z};
-	return result;
+vec3 vec3::operator*(float c) {
+	return vec3(x * c, y * c, z * c);
 }
 
-vec3 vec3_sub(vec3 v1, vec3 v2) {
-	vec3 result = {v1.x - v2.x, v1.y - v2.y, v1.z - v2.z};
-	return result;
+vec3 vec3::operator+(vec3 v) {
+	return vec3(x + v.x, y + v.y, z + v.z);
+}
+vec3 vec3::operator-(vec3 v) {
+	return vec3(x - v.x, y - v.y, z - v.z);
 }
 
-vec3 vec3_cross(vec3 v1, vec3 v2) {
-	vec3 result = {
-		v1.y * v2.z - v1.z * v2.y,
-		v1.z * v2.x - v1.x * v2.z,
-		v1.x * v2.y - v1.y * v2.x};
-
-	return result;
+float vec3::mag_sqr() {
+	vec3 v = *this;
+	return v * v;
 }
 
-// project v1 onto v2
-vec3 vec3_proj(vec3 v1, vec3 v2) {
-	return vec3_mul(v2, vec3_dot(v1, v2) / vec3_dot(v2, v2));
+vec3 vec3::proj(vec3 v) {
+	return v * (((*this) * v) / (v * v));
+}
+
+vec3 vec3::cross(vec3 v) {
+	return vec3(
+		y * v.z - z * v.y,
+		z * v.x - x * v.z,
+		x * v.y - y * v.x);
+}
+
+void vec3::print() {
+	printf("(%.2f, %.2f, %.2f)\n", x, y, z);
 }

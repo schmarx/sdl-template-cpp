@@ -1,3 +1,5 @@
+# UNDER CONSTRUCTION / NOT YET FUnCTIONAL
+This is for `c++`, alternatively see [template for `c`](https://github.com/schmarx/sdl-template).
 ## SDL template for c++
 
 A template that contains the initial boilerplate needed for applications reliant on simple 2-dimensional graphics.

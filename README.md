@@ -1,4 +1,4 @@
-# UNDER CONSTRUCTION / NOT YET FUnCTIONAL
+# UNDER CONSTRUCTION / NOT YET FUNCTIONAL
 This is for `c++`, alternatively see [template for `c`](https://github.com/schmarx/sdl-template).
 ## SDL template for c++
 

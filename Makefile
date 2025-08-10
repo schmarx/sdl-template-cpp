@@ -1,6 +1,6 @@
 src_dir = ./src
 main_file = ./src/main.cpp
-other_files = ./src/sim.cpp ./src/render.cpp ./src/vec.cpp
+other_files = ./src/update.cpp ./src/render.cpp ./src/vec.cpp
 
 output_file = ./bin/main.o
 

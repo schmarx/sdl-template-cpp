@@ -35,7 +35,9 @@ extern int window_y;
 
 extern SDL_Renderer *renderer;
 
-typedef struct {
+class obj {
+  private:
+  public:
 	SDL_Texture *texture;
 
 	vec2 pos;
@@ -50,10 +52,15 @@ typedef struct {
 	float h; // height
 
 	float m; // mass
-} obj;
 
-typedef struct {
-	// global time
+	obj(float r, float w, float h, float m);
+	~obj();
+};
+
+class App {
+  private:
+  public:
+	// global time/
 	int time_ms;
 	int step;
 
@@ -68,7 +75,27 @@ typedef struct {
 
 	// object count
 	int obj_count;
-} App;
+
+	App();
+	~App();
+};
+
+App::App() : mouse_pos(0, 0) {
+	time_ms = 0;
+	step = 0;
+
+	running = 1;
+	pause = 0;
+	debug = 1;
+
+	click = 0;
+
+	this->obj_count = obj_count;
+}
+
+App::~App() {
+	// nothing to do
+}
 
 // params for multithreading
 typedef struct {

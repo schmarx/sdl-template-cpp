@@ -7,7 +7,7 @@
 
 #include "main.h"
 #include "render.h"
-#include "sim.h"
+#include "update.h"
 
 obj *objs = NULL;
 pthread_t *threads;
@@ -22,6 +22,22 @@ int window_x = 800;
 int window_y = 1000;
 
 timer timers[TIMER_COUNT];
+
+obj::obj(float r, float w, float h, float m) : pos(0, 0), vel(0, 0), acc(0, 0) {
+	SDL_Texture *texture = NULL;
+
+	ang_vel = 0;
+	rot = 0;
+
+	this->r = r;
+	this->w = w;
+	this->h = h;
+	this->m = m;
+}
+
+obj::~obj() {
+	// nothing to do
+}
 
 void init_objects() {
 	memset(objs, 0, sizeof(obj) * app.obj_count);
@@ -87,13 +103,6 @@ void init(int argc, char *argv[]) {
 	srand(time(NULL));
 
 	// ----- set initial conditions -----
-	app.mouse_pos.x = 0;
-	app.mouse_pos.y = 0;
-
-	app.running = 1;
-	app.debug = 1;
-	app.click = 0;
-
 	app.obj_count = 10;
 
 	SDL_Init(SDL_INIT_EVERYTHING);

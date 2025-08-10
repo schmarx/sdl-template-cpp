@@ -1,7 +1,7 @@
 #include <math.h>
 #include <pthread.h>
 
-#include "sim.h"
+#include "update.h"
 
 void update(float dt) {
 	// remove contents and add update logic here

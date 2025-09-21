@@ -30,9 +30,23 @@ vec2 vec2::operator*(float c) {
 vec2 vec2::operator+(vec2 v) {
 	return vec2(x + v.x, y + v.y);
 }
-
 vec2 vec2::operator-(vec2 v) {
 	return vec2(x - v.x, y - v.y);
+}
+
+void vec2::operator*=(float c) {
+	x *= c;
+	y *= c;
+}
+
+void vec2::operator+=(vec2 v) {
+	x += v.x;
+	y += v.y;
+}
+
+void vec2::operator-=(vec2 v) {
+	x -= v.x;
+	y -= v.y;
 }
 
 float vec2::mag_sqr() {
@@ -75,6 +89,24 @@ vec3 vec3::operator+(vec3 v) {
 }
 vec3 vec3::operator-(vec3 v) {
 	return vec3(x - v.x, y - v.y, z - v.z);
+}
+
+void vec3::operator*=(float c) {
+	x *= c;
+	y *= c;
+	z *= c;
+}
+
+void vec3::operator+=(vec3 v) {
+	x += v.x;
+	y += v.y;
+	z += v.z;
+}
+
+void vec3::operator-=(vec3 v) {
+	x -= v.x;
+	y -= v.y;
+	z -= v.z;
 }
 
 float vec3::mag_sqr() {

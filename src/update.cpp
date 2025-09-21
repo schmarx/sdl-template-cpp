@@ -9,8 +9,8 @@ void update(float dt) {
 	// some example code
 	for (int i = 0; i < app.obj_count; i++) {
 		vec2 acc = {0, -10};
-		objs[i].pos = objs[i].pos + objs[i].vel * dt;
-		objs[i].vel = objs[i].vel + acc * dt;
+		objs[i].pos += objs[i].vel * dt;
+		objs[i].vel += acc * dt;
 
 		if (objs[i].pos.x < objs[i].w / 2) {
 			objs[i].pos.x = objs[i].w / 2;

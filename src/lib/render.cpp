@@ -16,7 +16,7 @@ renders text onto the screen using loaded text assets
 align should be one of the ALIGNMENT enum
 offset is how many lines to lift or lower the text by
 */
-void render_text(int pos_x, int pos_y, int align, int offset_y, Texture font[], char *text, ...) {
+void render_text(int pos_x, int pos_y, int align, int offset_y, Texture font[], const char *text, ...) {
 
 	va_list args;
 	va_start(args, text);

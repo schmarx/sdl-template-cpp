@@ -34,7 +34,7 @@ typedef struct {
 
 void render_init();
 void render_end();
-void render_text(int pos_x, int pos_y, int align, int offset_y, Texture font[], char *text, ...);
+void render_text(int pos_x, int pos_y, int align, int offset_y, Texture font[], const char *text, ...);
 
 RGB hsv_to_rgb(float hue, float sat, float val);
 

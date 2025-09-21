@@ -6,6 +6,7 @@ class vec2 {
 	float x;
 	float y;
 
+	vec2();					// default constructor
 	vec2(float x, float y); // constructor
 	~vec2();				// destructor
 

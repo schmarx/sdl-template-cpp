@@ -13,19 +13,28 @@ SDL_Event event;
 
 obj *objs = NULL;
 
+obj::obj(float r, float w, float h, float m) {
+	this->r = r;
+	this->w = w;
+	this->h = h;
+	this->m = m;
+}
+
+obj::~obj() {
+	// nothing
+}
+
 /*
 this is where objects (as defined in main.h) are initialised
 this will run again when the app is refreshed with [r]
 */
 void init_objects() {
-	memset(objs, 0, sizeof(obj) * app.obj_count);
-
 	// initialise objects here
 	float r = 20;
 	for (int i = 0; i < app.obj_count; i++) {
+		objs[i] = obj(r, 2 * r, 2 * r, 0);
+
 		objs[i].texture = circle_texture;
-		objs[i].w = 2 * r;
-		objs[i].h = 2 * r;
 
 		objs[i].pos.x = rngfr(r, app.sim_x - r);
 		objs[i].pos.y = rngfr(r, app.sim_y - r);

@@ -1,39 +1,15 @@
 #pragma once
 
-#include "vec.h"
 #include <SDL2/SDL.h>
-#include <pthread.h>
 
-#define thread_count 1
-#define PI 3.1415926535897932384626433832795
+#include "lib/app.h"
+#include "lib/vec.h"
 
-// ----- timing -----
-// timer values will only be updated every TIMER_UPDATE_FREQ'th frame
-// this is so that things like FPS counts don't just become a flicker of constantly changing values
-#define TIMER_UPDATE_FREQ 50
+void init(int argc, char *argv[]);
+void end();
+void handle_events();
 
-#define t_start(index) timers[index].start = SDL_GetPerformanceCounter()
-#define t_end(index) timers[index].end = SDL_GetPerformanceCounter()
-#define t_log(index, counter) timers[index].duration = (((counter) % TIMER_UPDATE_FREQ == 0) ? (1000.0 * (timers[index].end - timers[index].start) / (float)SDL_GetPerformanceFrequency()) : timers[index].duration)
-
-// ----- RNG -----
-#define rng(max) rand() % (max + 1)
-#define rngr(min, max) (rng((max - min)) + min)
-#define rngf() ((float)rand() / (float)RAND_MAX)
-
-enum TIMERS {
-	UPDATE,
-	RENDER,
-	FRAME,
-
-	// ----- count -----
-	TIMER_COUNT // make sure this is always the last in the enum, and that the enum starts at 0
-};
-
-extern int window_x;
-extern int window_y;
-
-extern SDL_Renderer *renderer;
+/* the main class that contains information on objects */
 
 class obj {
   private:
@@ -57,64 +33,4 @@ class obj {
 	~obj();
 };
 
-class App {
-  private:
-  public:
-	// global time/
-	int time_ms;
-	int step;
-
-	// running states
-	int running;
-	int pause;
-	int debug;
-
-	// mouse related
-	int click;
-	vec2 mouse_pos;
-
-	// object count
-	int obj_count;
-
-	App();
-	~App();
-};
-
-App::App() : mouse_pos(0, 0) {
-	time_ms = 0;
-	step = 0;
-
-	running = 1;
-	pause = 0;
-	debug = 1;
-
-	click = 0;
-
-	this->obj_count = obj_count;
-}
-
-App::~App() {
-	// nothing to do
-}
-
-// params for multithreading
-typedef struct {
-	int start;
-	int end;
-	float dt;
-} param;
-
-// used for timing
-typedef struct {
-	Uint64 start;
-	Uint64 end;
-
-	float duration;
-} timer;
-
 extern obj *objs;
-extern App app;
-extern timer timers[TIMER_COUNT];
-
-extern pthread_t *threads;
-extern param *params;

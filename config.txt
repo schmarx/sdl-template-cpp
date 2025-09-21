@@ -1,0 +1,15 @@
+fps=-1
+
+margin_left=100
+margin_right=100
+margin_top=100
+margin_bottom=100
+
+sim_scale=10
+
+window_x=-1
+window_y=-1
+
+seed=-1
+
+N=200
